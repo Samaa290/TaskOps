@@ -8,8 +8,8 @@ load_dotenv()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-# Base de datos SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///taskops.db'
+# Base de datos PostgreSQL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///taskops.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
