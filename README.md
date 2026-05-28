@@ -27,13 +27,16 @@ TaskOps es una aplicación web desarrollada con Flask que permite a los usuarios
 - Interfaz dark mode moderna
 
 ## Arquitectura
+
+```
 Usuario
-│
+   │
 AWS EC2 (18.226.60.224)
-│
+   │
 Docker Compose
-├── taskops-app (Flask:5000)
-└── taskops-db  (PostgreSQL:5432)
+   ├── taskops-app (Flask:5000)
+   └── taskops-db  (PostgreSQL:5432)
+```
 
 ## Pipeline CI/CD
 git push → GitHub Actions → Docker Build → Deploy EC2
@@ -53,6 +56,8 @@ docker compose up --build
 Abrir: http://localhost:5000
 
 ## Estructura del proyecto
+
+```
 TaskOps/
 ├── app/
 │   ├── app.py              # Lógica principal Flask
@@ -65,6 +70,7 @@ TaskOps/
 │   └── workflows/
 │       └── deploy.yml      # Pipeline CI/CD
 └── README.md
+```
 
 ## Desarrollado por
 Samaya Baján — Estudiante de Ingeniería en Sistemas UMG 2026
