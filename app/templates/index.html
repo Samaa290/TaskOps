@@ -28,44 +28,85 @@
 
         <div class="topbar">
             <h1>Today</h1>
-            <button class="add-btn">＋</button>
+            <button class="add-btn" onclick="document.getElementById('modal').style.display='flex'">＋</button>
         </div>
 
-        <div class="task-card">
+        {% for task in tasks %}
+        <div class="task-card {% if task.completed %}done{% endif %}">
+
             <div class="task-header">
-                <span class="check">☐</span>
-                <h3>Design TaskOps Dashboard</h3>
+                <h3>{{ task.title }}</h3>
             </div>
-            <span class="priority medium">Medium</span>
+
+            <span class="priority {{ task.priority }}">
+        {{ task.priority|capitalize }}
+        </span>
+
+        <div class="actions">
+            <a href="/complete/{{ task.id }}">☐</a>
+            <a href="/delete/{{ task.id }}">🗑</a>
+            <button onclick="openEdit({{ task.id }}, '{{ task.title }}', '{{ task.priority }}')">✏️</button>
         </div>
 
-        <div class="task-card">
-            <div class="task-header">
-                <span class="check">☐</span>
-                <h3>Deploy Docker Container</h3>
-            </div>
-            <span class="priority low">Low</span>
         </div>
-
-        <div class="task-card">
-            <div class="task-header">
-                <span class="check">☐</span>
-                <h3>Connect AWS Instance</h3>
-            </div>
-            <span class="priority high">High</span>
-        </div>
-
-        <div class="task-card">
-            <div class="task-header">
-                <span class="check">☐</span>
-                <h3>Engineer Presentation</h3>
-            </div>
-            <span class="priority medium">Medium</span>
-        </div>
+{% endfor %}
 
     </main>
 
 </div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h2>New Task</h2>
+
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Task title" required>
+
+            <select name="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit">Save</button>
+        </form>
+
+        <button class="close" onclick="document.getElementById('modal').style.display='none'">Close</button>
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h2>Edit Task</h2>
+
+        <form id="editForm" method="POST">
+            <input type="text" name="title" id="editTitle">
+
+            <select name="priority" id="editPriority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit">Update</button>
+        </form>
+
+        <button class="close" onclick="document.getElementById('editModal').style.display='none'">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+function openEdit(id, title, priority) {
+    document.getElementById("editModal").style.display = "flex";
+
+    document.getElementById("editTitle").value = title;
+    document.getElementById("editPriority").value = priority;
+
+    document.getElementById("editForm").action = "/edit/" + id;
+}
+</script>
 
 </body>
 </html>
