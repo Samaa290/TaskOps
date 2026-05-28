@@ -33,7 +33,12 @@
 
         <div class="topbar">
             <h1>Today</h1>
-            <button class="add-btn" onclick="document.getElementById('modal').style.display='flex'" title="New Task">+</button>
+                <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-size:13px; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+                👤 {{ current_user.username }}
+                </span>
+                <button class="add-btn" onclick="document.getElementById('modal').style.display='flex'" title="New Task">+</button>
+                </div>
         </div>
 
         <p class="subtitle">{{ tasks|length }} task{% if tasks|length != 1 %}s{% endif %} · {{ tasks|selectattr('completed')|list|length }} completed</p>
