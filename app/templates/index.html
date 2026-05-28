@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskOps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">TaskOps</h2>
+
+        <nav>
+            <a href="#" class="active">📥 Inbox</a>
+            <a href="#">📅 Today</a>
+            <a href="#">🗂 Projects</a>
+            <a href="#">⚙ Settings</a>
+        </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <div class="topbar">
+            <h1>Today</h1>
+            <button class="add-btn">＋</button>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="check">☐</span>
+                <h3>Design TaskOps Dashboard</h3>
+            </div>
+            <span class="priority medium">Medium</span>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="check">☐</span>
+                <h3>Deploy Docker Container</h3>
+            </div>
+            <span class="priority low">Low</span>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="check">☐</span>
+                <h3>Connect AWS Instance</h3>
+            </div>
+            <span class="priority high">High</span>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="check">☐</span>
+                <h3>Engineer Presentation</h3>
+            </div>
+            <span class="priority medium">Medium</span>
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
