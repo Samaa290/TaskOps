@@ -33,6 +33,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd /home/ubuntu/TaskOps
-            docker compose down
-            docker compose pull
-            docker compose up -d
+            git pull origin main
+            docker-compose down
+            docker-compose pull
+            docker-compose up -d
